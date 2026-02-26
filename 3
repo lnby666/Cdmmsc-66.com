@@ -1,0 +1,1110 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智链全球 · 跨境供应链智能平台（融合版）</title>
+    <!-- Font Awesome 5 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+        }
+
+        body {
+            background: #f0f2f5;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        /* 登录卡片容器 */
+        .login-container {
+            max-width: 420px;
+            width: 100%;
+            background: #ffffff;
+            border-radius: 32px;
+            box-shadow: 0 30px 60px rgba(0, 40, 80, 0.15);
+            padding: 40px 36px;
+            border: 1px solid #e9ecf0;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .login-logo {
+            background: #0052cc;
+            width: 56px;
+            height: 56px;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 30px;
+            margin: 0 auto 16px;
+        }
+
+        .login-header h2 {
+            font-size: 26px;
+            font-weight: 600;
+            color: #0f172a;
+            letter-spacing: -0.3px;
+        }
+
+        .login-header p {
+            color: #5f6b7a;
+            font-size: 15px;
+            margin-top: 8px;
+        }
+
+        .input-group {
+            margin-bottom: 24px;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 500;
+            color: #334155;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 16px 18px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 20px;
+            font-size: 15px;
+            transition: all 0.15s;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: #0052cc;
+            background: #ffffff;
+            box-shadow: 0 0 0 4px rgba(0,82,204,0.08);
+        }
+
+        .password-wrapper {
+            position: relative;
+        }
+
+        .password-wrapper i {
+            position: absolute;
+            right: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #8091a7;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .login-options {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 20px 0 28px;
+        }
+
+        .remember {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #2d3a4b;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .remember input {
+            width: 18px;
+            height: 18px;
+            accent-color: #0052cc;
+        }
+
+        .forgot-link {
+            color: #0052cc;
+            font-size: 14px;
+            font-weight: 500;
+            text-decoration: none;
+        }
+
+        .login-btn {
+            width: 100%;
+            background: #0052cc;
+            color: white;
+            border: none;
+            padding: 16px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: background 0.15s;
+            border: 1px solid #0052cc;
+        }
+
+        .login-btn:hover {
+            background: #0042b0;
+        }
+
+        .login-footer {
+            margin-top: 32px;
+            text-align: center;
+            color: #6f7d91;
+            font-size: 14px;
+        }
+
+        .login-footer a {
+            color: #0052cc;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .version-demo {
+            background: #f0f5ff;
+            border-radius: 40px;
+            padding: 10px 20px;
+            margin-top: 30px;
+            font-size: 13px;
+            color: #0042b0;
+            text-align: center;
+            border: 1px solid #ccdfff;
+        }
+
+        .system-wrapper {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+            overflow: hidden;
+            border: 1px solid #e9ecef;
+            display: none; /* 初始隐藏，登录后显示 */
+            width: 100%;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 28px;
+            background: #ffffff;
+            border-bottom: 1px solid #eef2f6;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            background: #0052cc;
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .logo-text {
+            font-weight: 600;
+            font-size: 18px;
+            color: #1e293b;
+            letter-spacing: 0.3px;
+        }
+
+        .version-badge {
+            background: #e6f0ff;
+            color: #0052cc;
+            padding: 4px 10px;
+            border-radius: 40px;
+            font-size: 12px;
+            font-weight: 500;
+            margin-left: 8px;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .user-profile i {
+            font-size: 20px;
+            color: #64748b;
+            cursor: pointer;
+        }
+
+        .avatar {
+            width: 42px;
+            height: 42px;
+            background: #1e293b;
+            border-radius: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .main-layout {
+            display: flex;
+            background: #f8fafc;
+        }
+
+        .sidebar {
+            width: 240px;
+            background: #ffffff;
+            border-right: 1px solid #eef2f6;
+            padding: 24px 0;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 24px;
+            color: #475569;
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.1s;
+            border-left: 3px solid transparent;
+        }
+
+        .menu-item i {
+            width: 20px;
+            font-size: 16px;
+            color: #64748b;
+        }
+
+        .menu-item.active {
+            background: #f0f7ff;
+            border-left-color: #0052cc;
+            color: #0052cc;
+        }
+
+        .menu-item.active i {
+            color: #0052cc;
+        }
+
+        .menu-item:hover:not(.active) {
+            background: #f1f5f9;
+        }
+
+        .content-panel {
+            flex: 1;
+            padding: 24px 32px;
+            min-height: 700px;
+            background: #f8fafc;
+        }
+
+        .module-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .module-title h2 {
+            font-size: 22px;
+            font-weight: 600;
+            color: #0f172a;
+        }
+
+        .mock-badge {
+            background: #e2e8f0;
+            padding: 4px 12px;
+            border-radius: 30px;
+            color: #334155;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .filter-bar {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 20px 24px;
+            margin-bottom: 28px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+            border: 1px solid #edf2f7;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px 24px;
+            align-items: flex-end;
+        }
+
+        .filter-item {
+            display: flex;
+            flex-direction: column;
+            min-width: 140px;
+            flex: 1;
+        }
+
+        .filter-item label {
+            font-size: 12px;
+            font-weight: 500;
+            color: #64748b;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .filter-item input, .filter-item select {
+            padding: 10px 12px;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 14px;
+            background: white;
+            transition: 0.15s;
+        }
+
+        .filter-item input:focus, .filter-item select:focus {
+            outline: none;
+            border-color: #0052cc;
+            box-shadow: 0 0 0 3px rgba(0,82,204,0.1);
+        }
+
+        .filter-actions {
+            display: flex;
+            gap: 8px;
+            margin-left: auto;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 40px;
+            font-weight: 500;
+            font-size: 14px;
+            border: none;
+            cursor: pointer;
+            background: white;
+            border: 1px solid #e2e8f0;
+            color: #334155;
+            transition: 0.15s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-primary {
+            background: #0052cc;
+            border: 1px solid #0052cc;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #0042b0;
+        }
+
+        .data-table {
+            background: white;
+            border-radius: 20px;
+            border: 1px solid #edf2f7;
+            overflow-x: auto;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 900px;
+        }
+
+        th {
+            text-align: left;
+            padding: 16px 18px;
+            background: #fcfcfd;
+            font-weight: 600;
+            font-size: 13px;
+            color: #475569;
+            border-bottom: 1px solid #e9edf2;
+        }
+
+        td {
+            padding: 16px 18px;
+            border-bottom: 1px solid #f1f5f9;
+            color: #1e293b;
+            font-size: 14px;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 40px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .status-processing { background: #e6f7ff; color: #0077b6; }
+        .status-success { background: #e3f5ec; color: #0b6e4f; }
+        .status-warning { background: #fff3e3; color: #b45b0a; }
+        .status-pending { background: #f1f3f4; color: #5f6b7a; }
+
+        .action-icons {
+            display: flex;
+            gap: 12px;
+            color: #5f6b7a;
+        }
+
+        .action-icons i {
+            cursor: pointer;
+            font-size: 18px;
+            transition: color 0.1s;
+        }
+
+        .action-icons i:hover {
+            color: #0052cc;
+        }
+
+        .mock-modal-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 40px;
+            background: #f1f5f9;
+            padding: 24px;
+            border-radius: 20px;
+            border: 1px dashed #a0b8d4;
+        }
+
+        .modal-card {
+            background: white;
+            border-radius: 24px;
+            padding: 18px 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            flex: 1 1 260px;
+            border: 1px solid #e9edf2;
+        }
+
+        .modal-card h4 {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 16px;
+            margin-bottom: 16px;
+            color: #0f172a;
+        }
+
+        .modal-card h4 i {
+            color: #0052cc;
+        }
+
+        .modal-card .field-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px dashed #eef2f6;
+            font-size: 14px;
+        }
+
+        .debug-note {
+            background: #e9f0ff;
+            border-radius: 12px;
+            padding: 8px 16px;
+            font-size: 13px;
+            color: #0042b0;
+            margin-top: 20px;
+        }
+
+        /* 查询结果卡片 */
+        .result-card {
+            background: linear-gradient(135deg, #f8fcff 0%, #ffffff 100%);
+            border: 1px solid #d9e9ff;
+            border-radius: 24px;
+            padding: 24px;
+            margin-top: 24px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 20px rgba(0,82,204,0.08);
+        }
+        .result-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        .result-header i {
+            font-size: 28px;
+            color: #0052cc;
+            background: #e6f0ff;
+            padding: 10px;
+            border-radius: 16px;
+        }
+        .result-header h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #0f172a;
+        }
+        .result-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+        .result-item {
+            background: #f9fbfe;
+            border-radius: 18px;
+            padding: 16px;
+            border: 1px solid #eaf0f8;
+        }
+        .result-item .label {
+            font-size: 12px;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+        .result-item .value {
+            font-size: 24px;
+            font-weight: 600;
+            color: #0f172a;
+            margin-top: 4px;
+        }
+        .result-item .sub {
+            font-size: 14px;
+            color: #5f6b7a;
+            margin-top: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .risk-badge {
+            background: #fee2e2;
+            color: #b91c1c;
+            padding: 2px 12px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        .risk-badge.medium {
+            background: #fff3cd;
+            color: #856404;
+        }
+        .risk-badge.low {
+            background: #d1fae5;
+            color: #0b5e42;
+        }
+        .recommend-box {
+            margin-top: 24px;
+            background: #f0f7ff;
+            border-radius: 20px;
+            padding: 16px 24px;
+            border-left: 4px solid #0052cc;
+        }
+        .recommend-box i {
+            color: #0052cc;
+            margin-right: 8px;
+        }
+        .search-area {
+            background: white;
+            border-radius: 40px;
+            padding: 6px 6px 6px 24px;
+            border: 1px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            max-width: 600px;
+            margin-bottom: 30px;
+        }
+        .search-area input {
+            flex: 1;
+            border: none;
+            padding: 16px 0;
+            font-size: 16px;
+            background: transparent;
+            outline: none;
+        }
+        .search-area button {
+            background: #0052cc;
+            border: none;
+            color: white;
+            padding: 14px 32px;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.15s;
+        }
+        .search-area button:hover {
+            background: #0042b0;
+        }
+        .search-tip {
+            font-size: 13px;
+            color: #8099b0;
+            margin-top: -15px;
+            margin-bottom: 20px;
+        }
+
+        /* 图谱简示 */
+        .graph-preview {
+            background: #f0f4fe;
+            border-radius: 28px;
+            padding: 16px 22px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            border: 1px solid #cbd5e1;
+            margin-bottom: 20px;
+        }
+        .graph-nodes {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .hs-node {
+            background: white;
+            border: 2px solid #3b82f6;
+            border-radius: 40px;
+            padding: 6px 16px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: #1e4a7a;
+        }
+        .graph-arrow {
+            font-size: 1.4rem;
+            color: #64748b;
+        }
+        .risk-summary {
+            background: white;
+            border-radius: 26px;
+            padding: 10px 20px;
+            border: 1px solid #f1c4a3;
+            display: inline-flex;
+            gap: 20px;
+            align-items: center;
+        }
+        .risk-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 12px;
+            display: inline-block;
+            margin-right: 4px;
+        }
+        .risk-dot.high { background: #dc2626; }
+        .risk-dot.medium { background: #f97316; }
+        .risk-dot.low { background: #16a34a; }
+    </style>
+</head>
+<body>
+    <!-- 登录界面 (初始可见) -->
+    <div class="login-container" id="loginContainer">
+        <div class="login-header">
+            <div class="login-logo">🌐</div>
+            <h2>智链全球 · 智能平台</h2>
+            <p>跨境供应链 · 全功能融合演示</p>
+        </div>
+        <div class="input-group">
+            <label>用户名</label>
+            <input type="text" class="input-field" id="username" placeholder="任意账号" value="admin">
+        </div>
+        <div class="input-group">
+            <label>密码</label>
+            <div class="password-wrapper">
+                <input type="password" class="input-field" id="password" placeholder="••••••••" value="tsq666">
+                <i class="far fa-eye" id="togglePassword" style="cursor: pointer;"></i>
+            </div>
+        </div>
+        <div class="login-options">
+            <label class="remember">
+                <input type="checkbox" checked> 记住账号
+            </label>
+            <a href="#" class="forgot-link">忘记密码?</a>
+        </div>
+        <button class="login-btn" id="loginBtn"><i class="fas fa-sign-in-alt"></i> 登录系统</button>
+        <div class="login-footer">
+            没有账号? <a href="#">联系管理员</a>
+        </div>
+        <div class="version-demo">
+            <i class="fas fa-flask"></i> 演示模式 · 任意密码 tsq666
+        </div>
+    </div>
+
+    <!-- 主系统面板 (初始隐藏) -->
+    <div class="system-wrapper" id="systemWrapper">
+        <div class="navbar">
+            <div class="logo-area">
+                <div class="logo-icon">🌐</div>
+                <span class="logo-text">智链全球 · 融合版</span>
+                <span class="version-badge">V2.0 全功能</span>
+            </div>
+            <div class="user-profile">
+                <i class="fas fa-bell"></i>
+                <i class="fas fa-cog"></i>
+                <div class="avatar">AD</div>
+            </div>
+        </div>
+
+        <div class="main-layout">
+            <div class="sidebar">
+                <div class="menu-item active" data-module="home"><i class="fas fa-home"></i> 首页</div>
+                <div class="menu-item" data-module="order"><i class="fas fa-clipboard-list"></i> 订单处理</div>
+                <div class="menu-item" data-module="warehouse"><i class="fas fa-warehouse"></i> 仓储作业</div>
+                <div class="menu-item" data-module="transport"><i class="fas fa-truck"></i> 运输监控</div>
+                <div class="menu-item" data-module="customs"><i class="fas fa-file-invoice"></i> 报关作业</div>
+                <div class="menu-item" data-module="finance"><i class="fas fa-coins"></i> 财务结算</div>
+                <div class="menu-item" data-module="decision"><i class="fas fa-chart-pie"></i> 决策分析</div>
+                <div class="menu-item" data-module="service"><i class="fas fa-headset"></i> 客户服务</div>
+            </div>
+
+            <div class="content-panel" id="dynamicContent"></div>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            // ----- 登录逻辑 -----
+            const loginContainer = document.getElementById('loginContainer');
+            const systemWrapper = document.getElementById('systemWrapper');
+            const loginBtn = document.getElementById('loginBtn');
+            const togglePassword = document.getElementById('togglePassword');
+            const passwordField = document.getElementById('password');
+
+            if (togglePassword) {
+                togglePassword.addEventListener('click', function() {
+                    const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+                    passwordField.setAttribute('type', type);
+                    this.classList.toggle('fa-eye');
+                    this.classList.toggle('fa-eye-slash');
+                });
+            }
+
+            loginBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const username = document.getElementById('username').value.trim();
+                const password = document.getElementById('password').value.trim();
+                if (username.length > 0 && password.length > 0) {
+                    loginContainer.style.display = 'none';
+                    systemWrapper.style.display = 'block';
+                    document.body.style.padding = '20px';
+                    document.body.style.justifyContent = 'flex-start';
+                    document.body.style.alignItems = 'flex-start';
+                } else {
+                    alert('请输入用户名和密码 (演示用任意账号均可)');
+                }
+            });
+
+            const contentDiv = document.getElementById('dynamicContent');
+            const menuItems = document.querySelectorAll('.menu-item');
+
+            // ----- 模拟智能查询函数 -----
+            function simulateQuery(commodity) {
+                const mockDB = {
+                    '智能手机': { hs: '8517.12', name: '智能手机', rate: 0.0, risk: '低', riskLevel: 'low', desc: '消费电子，一般无特殊管制', rec: '可正常申报，建议提供IMEI列表' },
+                    '笔记本电脑': { hs: '8471.30', name: '便携式电脑', rate: 0.0, risk: '低', riskLevel: 'low', desc: '信息技术设备，豁免关税', rec: '注意原产地标记，建议申请FTA优惠' },
+                    '呼吸机': { hs: '9018.90', name: '医用呼吸设备', rate: 0.08, risk: '中', riskLevel: 'medium', desc: '医疗设备，需FDA/CE认证', rec: '确保进口国医疗器械注册证，建议委托专业报关行' },
+                    '牛肉': { hs: '0202.30', name: '冻牛肉', rate: 0.20, risk: '中', riskLevel: 'medium', desc: '动植物产品，检疫严格', rec: '需提前办理进境动植物检疫许可证，关注关税配额' },
+                    'AI芯片': { hs: '8542.31', name: '处理器及控制器', rate: 0.0, risk: '高', riskLevel: 'high', desc: '高性能计算芯片，可能受出口管制', rec: '核查最终用户和最终用途，必要时申请出口许可证' },
+                };
+                if (!commodity.trim()) return null;
+                const lower = commodity.toLowerCase();
+                let matched = null;
+                for (let key in mockDB) {
+                    if (lower.includes(key.toLowerCase())) {
+                        matched = { ...mockDB[key], input: commodity, hsCode: mockDB[key].hs };
+                        break;
+                    }
+                }
+                if (!matched) {
+                    const fallback = [
+                        { hs: '8471.30', name: '自动数据处理设备', rate: 0.0, risk: '低', riskLevel: 'low', desc: '信息技术产品', rec: '建议按实际用途归类' },
+                        { hs: '8517.62', name: '通信设备', rate: 0.08, risk: '中', riskLevel: 'medium', desc: '可能含加密功能', rec: '核对是否需密码设备许可证' },
+                    ][Math.floor(Math.random()*2)];
+                    matched = { ...fallback, input: commodity, hsCode: fallback.hs };
+                }
+                return matched;
+            }
+
+            // ----- 各模块渲染 -----
+            function renderHome() {
+                return `
+                    <div class="module-title">
+                        <h2>首页 · 智能货物查询</h2>
+                        <div class="mock-badge"><i class="fas fa-robot"></i> AI实时预测 (融合版)</div>
+                    </div>
+                    <div class="filter-bar" style="background: white; flex-direction: column; align-items: stretch;">
+                        <div style="font-weight: 500; margin-bottom: 8px;">🔍 输入任意货物描述，体验智能报关</div>
+                        <div class="search-area">
+                            <input type="text" id="commodityInput" placeholder="例如：智能手机、笔记本电脑、呼吸机、牛肉、AI芯片……" value="智能手机">
+                            <button id="searchBtn"><i class="fas fa-search"></i> 查询</button>
+                        </div>
+                        <div class="search-tip"><i class="fas fa-info-circle"></i> 系统将模拟HS编码归类、关税计算及风险预警</div>
+                    </div>
+                    <div id="resultContainer"></div>
+
+                    <div style="display: flex; gap: 20px; margin-bottom: 28px;">
+                        <div style="flex:1; background: white; border-radius: 20px; padding: 20px; border:1px solid #edf2f7;">
+                            <div style="color:#64748b; font-size:14px;">待处理订单</div>
+                            <div style="font-size:32px; font-weight:600;">23</div>
+                        </div>
+                        <div style="flex:1; background: white; border-radius: 20px; padding: 20px; border:1px solid #edf2f7;">
+                            <div style="color:#64748b; font-size:14px;">在途运输</div>
+                            <div style="font-size:32px; font-weight:600;">15</div>
+                        </div>
+                        <div style="flex:1; background: white; border-radius: 20px; padding: 20px; border:1px solid #edf2f7;">
+                            <div style="color:#64748b; font-size:14px;">待报关货物</div>
+                            <div style="font-size:32px; font-weight:600;">9</div>
+                        </div>
+                        <div style="flex:1; background: white; border-radius: 20px; padding: 20px; border:1px solid #edf2f7;">
+                            <div style="color:#64748b; font-size:14px;">待结算账款</div>
+                            <div style="font-size:32px; font-weight:600;">₽ 128K</div>
+                        </div>
+                    </div>
+                    <div style="background: white; border-radius: 20px; padding: 22px; border:1px solid #edf2f7;">
+                        <h4 style="margin-bottom:16px;"><i class="fas fa-pen" style="color:#0052cc;"></i> 新增订单登记</h4>
+                        <div style="display:grid; grid-template-columns:1fr 1fr 1fr 1fr; gap:16px;">
+                            <input placeholder="订单编号" style="padding:12px; border-radius:12px; border:1px solid #e2e8f0;">
+                            <input placeholder="客户名称" style="padding:12px; border-radius:12px; border:1px solid #e2e8f0;">
+                            <select style="padding:12px; border-radius:12px; border:1px solid #e2e8f0;"><option>货品类型: 电子产品</option><option>服装</option></select>
+                            <select style="padding:12px; border-radius:12px; border:1px solid #e2e8f0;"><option>运输方式: 海运</option><option>空运</option></select>
+                        </div>
+                        <div style="margin-top:16px; display:flex; gap:10px; justify-content:flex-end;">
+                            <button class="btn">重置</button>
+                            <button class="btn btn-primary">登记</button>
+                        </div>
+                    </div>
+                    <div class="debug-note"><i class="fas fa-info-circle"></i> 首页集成智能货物查询 (输入任意商品，体验HS编码、关税与风险预测)</div>
+                `;
+            }
+
+            function renderOrder() {
+                return `
+                    <div class="module-title"><h2>订单处理</h2><div class="mock-badge">2.3 全流程管理</div></div>
+                    <div class="filter-bar">
+                        <div class="filter-item"><label>订单编号</label><input placeholder="ORD-"></div>
+                        <div class="filter-item"><label>客户名称</label><input></div>
+                        <div class="filter-item"><label>下单日期</label><input type="date"></div>
+                        <div class="filter-actions"><button class="btn btn-primary">查询</button></div>
+                    </div>
+                    <div class="data-table">
+                        <table>
+                            <tr><th>订单编号</th><th>客户</th><th>下单日期</th><th>货品类型</th><th>金额</th><th>状态</th><th>操作</th></tr>
+                            <tr><td>PO-2401</td><td>亚马逊物流</td><td>2026-02-20</td><td>3C电子</td><td>$12,450</td><td><span class="status-badge status-processing">待处理</span></td><td><div class="action-icons"><i class="far fa-eye" title="详情"></i><i class="far fa-edit"></i></div></td></tr>
+                            <tr><td>PO-2402</td><td>Zara Home</td><td>2026-02-21</td><td>家居</td><td>$8,220</td><td><span class="status-badge status-success">已完成</span></td><td><div class="action-icons"><i class="far fa-eye"></i></div></td></tr>
+                        </table>
+                    </div>
+                    <div class="mock-modal-row">
+                        <div class="modal-card"><h4><i class="far fa-file-alt"></i> 订单详情</h4><div class="field-row"><span>收货人</span><span>李强</span></div><div class="field-row"><span>货品</span><span>智能手机*100</span></div></div>
+                        <div class="modal-card"><h4><i class="far fa-edit"></i> 修改订单</h4><div class="field-row"><span>数量</span><span><input value="100"></span></div></div>
+                        <div class="modal-card"><h4><i class="far fa-times-circle"></i> 取消确认</h4><div class="field-row"><span>原因</span><span><select><option>库存不足</option></select></span></div></div>
+                    </div>
+                `;
+            }
+
+            function renderWarehouse() {
+                return `
+                    <div class="module-title"><h2>仓储作业</h2><div class="mock-badge">2.4 库存/出库/盘点</div></div>
+                    <div class="filter-bar">
+                        <div class="filter-item"><label>货品编号</label><input></div><div class="filter-item"><label>仓库位置</label><input></div>
+                        <div class="filter-actions"><button class="btn btn-primary">查询</button></div>
+                    </div>
+                    <div class="data-table">
+                        <table><tr><th>作业编号</th><th>货品名称</th><th>仓库位置</th><th>当前库存</th><th>作业类型</th><th>操作员</th><th>操作</th></tr>
+                        <tr><td>WH-101</td><td>笔记本电脑</td><td>A1-03</td><td>45</td><td>出库</td><td>张三</td><td><div class="action-icons"><i class="far fa-eye"></i><i class="fas fa-truck"></i><i class="fas fa-clipboard-check"></i></div></td></tr>
+                        <tr><td>WH-102</td><td>无线耳机</td><td>B2-11</td><td>120</td><td>入库</td><td>李四</td><td><div class="action-icons"><i class="far fa-eye"></i></div></td></tr>
+                    </table></div>
+                `;
+            }
+
+            function renderTransport() {
+                return `
+                    <div class="module-title"><h2>运输监控</h2><div class="mock-badge">2.5 轨迹/延误/位置</div></div>
+                    <div class="filter-bar">
+                        <div class="filter-item"><label>运输单号</label><input></div><div class="filter-item"><label>承运商</label><select><option>马士基</option></select></div>
+                        <div class="filter-actions"><button class="btn btn-primary">查询</button></div>
+                    </div>
+                    <div class="data-table">
+                        <table><tr><th>运单号</th><th>客户</th><th>起运地</th><th>目的地</th><th>状态</th><th>操作</th></tr>
+                        <tr><td>TR-8823</td><td>极速电商</td><td>深圳</td><td>汉堡</td><td><span class="status-badge status-warning">延误</span></td><td><div class="action-icons"><i class="far fa-eye"></i><i class="fas fa-exclamation-triangle"></i><i class="fas fa-map-marker-alt"></i></div></td></tr>
+                    </table></div>
+                    <div class="mock-modal-row">
+                        <div class="modal-card"><h4>2.5.1 运输详情</h4><div>轨迹: 深圳→宁波→...</div></div>
+                        <div class="modal-card"><h4>2.5.2 延误报告</h4><div>原因: 港口拥堵</div></div>
+                        <div class="modal-card"><h4>2.5.3 位置更新</h4><div>当前位置: 新加坡港</div></div>
+                    </div>
+                `;
+            }
+
+            function renderCustoms() {
+                return `
+                    <div class="module-title"><h2>报关作业 · 智能图谱</h2><div class="mock-badge">2.6 HS编码+风险预测</div></div>
+                    <div class="graph-preview">
+                        <div class="graph-nodes">
+                            <span class="hs-node">📱 智能手机</span>
+                            <i class="fas fa-code-branch graph-arrow"></i>
+                            <span class="hs-node">8517.12</span>
+                            <i class="fas fa-long-arrow-alt-right graph-arrow"></i>
+                            <span class="hs-node">🔌 充电器</span>
+                            <i class="fas fa-code-branch graph-arrow"></i>
+                            <span class="hs-node">8504.40</span>
+                        </div>
+                        <div class="risk-summary">
+                            <span><span class="risk-dot high"></span> 高 2</span>
+                            <span><span class="risk-dot medium"></span> 中 4</span>
+                            <span><span class="risk-dot low"></span> 低 13</span>
+                        </div>
+                    </div>
+                    <div class="filter-bar">
+                        <div class="filter-item"><label>报关单号</label><input></div><div class="filter-item"><label>HS编码</label><input></div>
+                        <div class="filter-actions"><button class="btn btn-primary">查询</button><button class="btn" onclick="alert('智能匹配HS编码')">AI匹配</button></div>
+                    </div>
+                    <div class="data-table">
+                        <table><tr><th>报关单号</th><th>货品</th><th>HS编码(AI)</th><th>风险等级</th><th>状态</th><th>操作</th></tr>
+                        <tr><td>BC-2401</td><td>智能手机</td><td>8517.12 ⚡</td><td><span class="risk-badge low">低</span></td><td>放行</td><td><div class="action-icons"><i class="far fa-eye"></i><i class="fas fa-file"></i><i class="fas fa-shield-alt"></i></div></td></tr>
+                        <tr><td>BC-2402</td><td>锂电池</td><td>8507.60 ⚡</td><td><span class="risk-badge medium">中</span></td><td>查验</td><td><div class="action-icons"><i class="far fa-eye"></i></div></td></tr>
+                    </table></div>
+                    <div class="mock-modal-row">
+                        <div class="modal-card"><h4>2.6.1 报关详情</h4><div>HS:8517.12 监管条件:无</div></div>
+                        <div class="modal-card"><h4>2.6.2 申报信息</h4><div>随附单证:发票/箱单</div></div>
+                        <div class="modal-card"><h4>2.6.3 单证管理</h4><div>原产地证、许可证</div></div>
+                    </div>
+                `;
+            }
+
+            function renderFinance() {
+                return `
+                    <div class="module-title"><h2>财务结算</h2><div class="mock-badge">2.7 结算单/发票</div></div>
+                    <div class="filter-bar">
+                        <div class="filter-item"><label>结算单号</label><input></div><div class="filter-item"><label>客户</label><input></div>
+                        <div class="filter-actions"><button class="btn btn-primary">查询</button></div>
+                    </div>
+                    <div class="data-table">
+                        <table><tr><th>结算单号</th><th>客户</th><th>金额</th><th>状态</th><th>操作</th></tr>
+                        <tr><td>SET-0212</td><td>DHL供应链</td><td>$54,200</td><td>已支付</td><td><div class="action-icons"><i class="far fa-eye"></i><i class="fas fa-file-invoice"></i></div></td></tr>
+                    </table></div>
+                `;
+            }
+
+            function renderDecision() {
+                return `
+                    <div class="module-title"><h2>决策分析</h2><div class="mock-badge">2.8 成本/风险报告</div></div>
+                    <div class="filter-bar">
+                        <div class="filter-item"><label>分析类型</label><select><option>成本分析</option><option>风险评估</option></select></div>
+                        <div class="filter-actions"><button class="btn btn-primary">生成报告</button></div>
+                    </div>
+                    <div class="data-table">
+                        <table><tr><th>分析编号</th><th>主题</th><th>类型</th><th>分析师</th><th>状态</th><th>操作</th></tr>
+                        <tr><td>DA-2401</td><td>Q1运输成本优化</td><td>成本分析</td><td>赵岩</td><td>已完成</td><td><div class="action-icons"><i class="fas fa-chart-line"></i></div></td></tr>
+                    </table></div>
+                `;
+            }
+
+            function renderService() {
+                return `
+                    <div class="module-title"><h2>客户服务</h2><div class="mock-badge">2.9 投诉/满意度</div></div>
+                    <div class="filter-bar">
+                        <div class="filter-item"><label>服务单号</label><input></div><div class="filter-item"><label>客户</label><input></div>
+                        <div class="filter-actions"><button class="btn btn-primary">查询</button></div>
+                    </div>
+                    <div class="data-table">
+                        <table><tr><th>工单号</th><th>客户</th><th>问题</th><th>优先级</th><th>操作</th></tr>
+                        <tr><td>SR-0223</td><td>安克创新</td><td>运输延误</td><td>高</td><td><div class="action-icons"><i class="far fa-eye"></i><i class="fas fa-star"></i></div></td></tr>
+                    </table></div>
+                `;
+            }
+
+            const moduleMap = {
+                home: renderHome,
+                order: renderOrder,
+                warehouse: renderWarehouse,
+                transport: renderTransport,
+                customs: renderCustoms,
+                finance: renderFinance,
+                decision: renderDecision,
+                service: renderService,
+            };
+
+            function setActiveMenu(moduleId) {
+                menuItems.forEach(item => {
+                    const mod = item.getAttribute('data-module');
+                    if (mod === moduleId) {
+                        item.classList.add('active');
+                    } else {
+                        item.classList.remove('active');
+                    }
+                });
+            }
+
+            function renderModule(moduleId) {
+                const renderFn = moduleMap[moduleId] || moduleMap['home'];
+                contentDiv.innerHTML = renderFn();
+                if (moduleId === 'home') {
+                    document.getElementById('searchBtn')?.addEventListener('click', performSearch);
+                    document.getElementById('commodityInput')?.addEventListener('keypress', (e) => { if (e.key === 'Enter') performSearch(); });
+                    setTimeout(performSearch, 50);
+                }
+            }
+
+            function performSearch() {
+                const input = document.getElementById('commodityInput');
+                if (!input) return;
+                const query = input.value.trim() || '智能手机';
+                const result = simulateQuery(query);
+                const container = document.getElementById('resultContainer');
+                if (!container) return;
+                if (!result) { container.innerHTML = '<div class="result-card">请输入有效货物</div>'; return; }
+                const riskClass = result.riskLevel === 'high' ? 'risk-badge' : (result.riskLevel === 'medium' ? 'risk-badge medium' : 'risk-badge low');
+                const dutyAmount = (1000 * result.rate).toFixed(2);
+                const vatAmount = ((1000 + parseFloat(dutyAmount)) * 0.13).toFixed(2);
+                const total = (1000 + parseFloat(dutyAmount) + parseFloat(vatAmount)).toFixed(2);
+                const html = `
+                    <div class="result-card">
+                        <div class="result-header"><i class="fas fa-microchip"></i><h3>“${result.input}” 智能分析</h3></div>
+                        <div class="result-grid">
+                            <div class="result-item"><div class="label">预测HS编码</div><div class="value">${result.hsCode}</div><div class="sub"><i class="fas fa-tag"></i> ${result.name}</div></div>
+                            <div class="result-item"><div class="label">基础关税率</div><div class="value">${(result.rate*100).toFixed(1)}%</div><div class="sub">关税 $${dutyAmount}</div></div>
+                            <div class="result-item"><div class="label">增值税</div><div class="value">13.0%</div><div class="sub">VAT $${vatAmount}</div></div>
+                            <div class="result-item"><div class="label">总税费(货值$1000)</div><div class="value">$${total}</div></div>
+                        </div>
+                        <div style="display:flex; gap:20px; margin-top:20px; flex-wrap:wrap;">
+                            <div><span class="${riskClass}"><i class="fas fa-exclamation-triangle"></i> 风险: ${result.risk}</span><p style="margin-top:6px;">${result.desc}</p></div>
+                            <div class="recommend-box"><i class="fas fa-lightbulb"></i> ${result.rec}</div>
+                        </div>
+                        <div style="margin-top:20px; border-top:1px dashed #d9e2ef; padding-top:16px; display:flex; justify-content:space-between;">
+                            <span style="color:#64748b;"><i class="far fa-clock"></i> 置信度96.5%</span>
+                            <button class="btn btn-primary" onclick="alert('生成报关草单')"><i class="fas fa-file-export"></i> 报关草单</button>
+                        </div>
+                    </div>
+                `;
+                container.innerHTML = html;
+            }
+
+            menuItems.forEach(item => {
+                item.addEventListener('click', (e) => {
+                    const moduleId = item.getAttribute('data-module');
+                    setActiveMenu(moduleId);
+                    renderModule(moduleId);
+                });
+            });
+
+            setActiveMenu('home');
+            renderModule('home');
+            window.performSearch = performSearch; // 暴露给onclick
+        })();
+    </script>
+</body>
+</html>
